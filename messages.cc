@@ -29,6 +29,11 @@ ostream &RoutingMessage::Print(ostream &os) const
 #endif
 
 #if defined(DISTANCEVECTOR)
+RoutingMessage::RoutingMessage(int s, map<int, TopoLink> distVec){
+    sender = s;
+    distanceVector = distVec;
+}
+
 ostream &RoutingMessage::Print(ostream &os) const
 {
     os << "DistanceVector RoutingMessage()";

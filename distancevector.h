@@ -22,6 +22,7 @@ class DistanceVector: public Node {
         ostream & Print(ostream & os) const;
 
         // Anything else
+        bool checkUpdated(); //check if any distances have been updated - new shortest path
 };
 
 inline ostream & operator<<(ostream & os, const DistanceVector & n) {

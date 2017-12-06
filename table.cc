@@ -11,7 +11,12 @@ Table::Table(const Table & rhs) {
 Table & Table::operator=(const Table & rhs) {
     /* For now,  Change if you add more data members to the class */
     topo = rhs.topo;
-
+    
+    #if defined(DISTANCEVECTOR)
+        linksToNeighbors = rhs.linksToNeighbors;
+        distanceVector = rhs.distanceVector;
+        edgeTo = rhs.edgeTo;
+    #endif
     return *this;
 }
 
@@ -34,7 +39,14 @@ ostream & Table::Print(ostream &os) const
 #if defined(DISTANCEVECTOR)
 ostream & Table::Print(ostream &os) const
 {
-  os << "DistanceVector Table()";
+  os << std::endl << "DistanceVector Table()" << std::endl;
+  
+  map<int, TopoLink>::const_iterator i = distanceVector.begin();
+  while(i != distanceVector.end()){
+      os << "Node: " << (*i).first << " Distance: " << (*i).second.cost << std::endl;
+      i++;
+  }
+  
   return os;
 }
 #endif

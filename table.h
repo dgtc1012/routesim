@@ -27,7 +27,7 @@ struct TopoLink {
 // Students should write this class
 class Table {
     private:
-        map < int, map < int, TopoLink > > topo;
+        //map < int, map < int, TopoLink > > topo;
     public:
         Table();
         Table(const Table &);
@@ -36,11 +36,15 @@ class Table {
         ostream & Print(ostream &os) const;
 
         // Anything else you need
+        map<int, map<int, TopoLink> > topo; //made this public bc im lazy, I should have made accessor methods
 
         #if defined(LINKSTATE)
         #endif
 
         #if defined(DISTANCEVECTOR)
+            map<int, TopoLink> linksToNeighbors; //map of links this node has to its neighbors
+            map<int, TopoLink> distanceVector; //map of distance vectors
+            map<int, int> edgeTo; //tells you next node in your path to your destination - next link to take to get to dest
         #endif
 };
 
