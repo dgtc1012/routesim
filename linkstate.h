@@ -22,6 +22,7 @@ class LinkState: public Node {
         ostream & Print(ostream & os) const;
 
         // Anything else
+        void Dijkstra();
 };
 
 inline ostream & operator<<(ostream & os, const LinkState & n) {

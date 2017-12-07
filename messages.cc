@@ -21,6 +21,13 @@ ostream &RoutingMessage::Print(ostream &os) const
 #endif
 
 #if defined(LINKSTATE)
+RoutingMessage::RoutingMessage(int src, int dst, int cost, int age){
+    srcNode = src;
+    dstNode = dst;
+    linkCost = cost;
+    linkAge = age;
+}
+
 ostream &RoutingMessage::Print(ostream &os) const
 {
     os << "LinkState RoutingMessage()";

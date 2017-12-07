@@ -12,10 +12,14 @@ Table & Table::operator=(const Table & rhs) {
     /* For now,  Change if you add more data members to the class */
     topo = rhs.topo;
     
+    #if defined(LINKSTATE)
+        nextStepTo = rhs.nextStepTo;
+        wasChanged = rhs.wasChanged;
+    #endif
     #if defined(DISTANCEVECTOR)
         linksToNeighbors = rhs.linksToNeighbors;
         distanceVector = rhs.distanceVector;
-        edgeTo = rhs.edgeTo;
+        nextStepTo = rhs.nextStepTo;
     #endif
     return *this;
 }
@@ -32,6 +36,17 @@ ostream & Table::Print(ostream &os) const
 ostream & Table::Print(ostream &os) const
 {
   os << "LinkState Table()";
+  
+  map<int, map<int, TopoLink> >::const_iterator tableRow = topo.begin();
+  while(tableRow != topo.end()){
+      map<int, TopoLink>::const_iterator tableCol = (*tableRow).second.begin();
+      while(tableCol != (*tableRow).second.end()){
+        os << "src = " << (*tableRow).first << " dest = " << (*tableCol).first << " cost = " << (*tableCol).second.cost << " age = " << (*tableCol).second.age << std::endl;
+        tableCol++;
+      }
+      tableRow++;
+  }
+  
   return os;
 }
 #endif

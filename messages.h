@@ -15,7 +15,13 @@ struct RoutingMessage {
     // Anything else you need
 
     #if defined(LINKSTATE)
+        RoutingMessage(int msgSrc, int msgDst, int cost, int age);
+        int srcNode;
+        int dstNode;
+        int linkCost;
+        int linkAge;
     #endif
+    
     #if defined(DISTANCEVECTOR)
         //content of routing message, contains node sending the message and distanceVector to be sent
         RoutingMessage(int s, map<int, TopoLink>);

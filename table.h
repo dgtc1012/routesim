@@ -39,12 +39,14 @@ class Table {
         map<int, map<int, TopoLink> > topo; //made this public bc im lazy, I should have made accessor methods
 
         #if defined(LINKSTATE)
+            map<int, int> nextStepTo;
+            bool wasChanged;
         #endif
 
         #if defined(DISTANCEVECTOR)
             map<int, TopoLink> linksToNeighbors; //map of links this node has to its neighbors
             map<int, TopoLink> distanceVector; //map of distance vectors
-            map<int, int> edgeTo; //tells you next node in your path to your destination - next link to take to get to dest
+            map<int, int> nextStepTo; //tells you next node in your path to your destination - next link to take to get to dest
         #endif
 };
 

@@ -62,7 +62,7 @@ void DistanceVector::TimeOut() {
 
 Node* DistanceVector::GetNextHop(Node *destination) { 
     //make temporary node n of destination edge
-    Node *n = new Node(routing_table.edgeTo[destination->GetNumber()], NULL, 0, 0);
+    Node *n = new Node(routing_table.nextStepTo[destination->GetNumber()], NULL, 0, 0);
     //look for matching node to find the next hop to get to the destination
     Node *actual = context->FindMatchingNode(const_cast<Node *>(n));
     return actual;
@@ -116,7 +116,7 @@ bool DistanceVector::checkUpdated(){
         //if there was a min found and it isnt equal to the current value, replace it in the table
         if(newMin != 21474783 && newMin != routing_table.distanceVector[curNode].cost){
             routing_table.distanceVector[curNode].cost = newMin;
-            routing_table.edgeTo[curNode] = nextHop;
+            routing_table.nextStepTo[curNode] = nextHop;
             updated = true;
         }
     }    
