@@ -32,9 +32,8 @@ void LinkState::LinkHasBeenUpdated(Link* l) {
     routing_table.topo[src][dst].cost = latency;
     //increment age of link info
     routing_table.topo[src][dst].age++;
-    //run dijkstra, note that table has been updated
+    //run dijkstra
     Dijkstra();
-    routing_table.wasChanged = true;
     //send new link info to neighbors
     SendToNeighbors(new RoutingMessage(src, dst, latency, routing_table.topo[src][dst].age));
 }
@@ -53,7 +52,6 @@ void LinkState::ProcessIncomingRoutingMessage(RoutingMessage *m) {
         routing_table.topo[src][dst].age = newAge;
         //run dijkstra() again, note that it has changed and send the message you recieved to your neighbors
         Dijkstra();
-        routing_table.wasChanged = true;
         SendToNeighbors(m);
     }
     
@@ -94,7 +92,7 @@ void LinkState::Dijkstra(){
     }
     
     //init distance and prev
-    for(int i = 0; i < tableSize - 1; i++){
+    for(int i = 0; i < tableSize; i++){
         distance[i] = 21474783;
         previous[i] = -1;
     }

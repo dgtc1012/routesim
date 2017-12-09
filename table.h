@@ -40,7 +40,6 @@ class Table {
 
         #if defined(LINKSTATE)
             map<int, int> nextStepTo;
-            bool wasChanged;
         #endif
 
         #if defined(DISTANCEVECTOR)

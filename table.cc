@@ -14,7 +14,6 @@ Table & Table::operator=(const Table & rhs) {
     
     #if defined(LINKSTATE)
         nextStepTo = rhs.nextStepTo;
-        wasChanged = rhs.wasChanged;
     #endif
     #if defined(DISTANCEVECTOR)
         linksToNeighbors = rhs.linksToNeighbors;
