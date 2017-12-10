@@ -1,6 +1,5 @@
 #include "distancevector.h"
 #include "context.h"
-#include "limits.h"
 
 DistanceVector::DistanceVector(unsigned n, SimulationContext* c, double b, double l) :
     Node(n, c, b, l)

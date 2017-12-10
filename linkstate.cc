@@ -1,6 +1,7 @@
 #include "linkstate.h"
 #include "context.h"
 #include <set>
+#include <limits.h>
 
 LinkState::LinkState(unsigned n, SimulationContext* c, double b, double l) :
     Node(n, c, b, l)
@@ -93,7 +94,7 @@ void LinkState::Dijkstra(){
     
     //init distance and prev
     for(int i = 0; i < tableSize; i++){
-        distance[i] = 21474783;
+        distance[i] = INT_MAX;
         previous[i] = -1;
     }
     
@@ -102,7 +103,7 @@ void LinkState::Dijkstra(){
     
     for(int i = 0; i < tableSize - 1; i++){
         int u = -1;
-        int min = 21474783;
+        int min = INT_MAX;
         
         for(topoItr = routing_table.topo.begin(); topoItr != routing_table.topo.end(); topoItr++){
             if(visited.count(topoItr->first) < 1 && distance[topoItr->first] <= min){
